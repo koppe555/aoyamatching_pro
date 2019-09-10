@@ -1,0 +1,12 @@
+<% @recruits.each do |recruit| %>
+  <div class="card text-center">
+    <a href="<%= recruit_path(recruit.id) %>"><img src="/<%= recruit.image_url %>" class="card-img-top" alt="募集内容"></a>
+    <div class="card-body">
+      <h5 class="card-title"><%= recruit.title %></h5>
+      <!--      <p class="card-text"><%#= recruit.contents %></p>-->
+      <p class="card-text"><small class="text-muted"><%= recruit.created_at.strftime('%Y/%m/%d %H:%M')  %></small></p>
+
+      <a href="<%= recruit_path(recruit.id) %>" class="btn btn-primary">詳細を見る</a>
+    </div>
+  </div>
+<% end%>

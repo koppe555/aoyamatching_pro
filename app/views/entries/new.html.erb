@@ -1,0 +1,22 @@
+<div class="card text-center">
+  <img src="/<%= @recruit.image_url %>" class="card-img-top" alt="募集内容">
+  <div class="card-body">
+    <h5 class="card-title"><%= @recruit.title %></h5>
+    <p class="card-text"><%= @recruit.contents %></p>
+    <p class="card-text"><small class="text-muted"><%= @recruit.created_at.strftime('%Y/%m/%d %H:%M')  %></small></p>
+    <a href="#" class="btn btn-primary">興味がある！</a>
+  </div>
+</div>
+
+
+<h2>応募する！</h2>
+<%= form_with model: [@recruit, @recruit.entries.new] do |f| %>
+  <div class="form-group">
+    <p>メッセージ</p>
+    <%= f.text_area :message, autofocus: true, placeholder: "", class: "form-control"%>
+  </div>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+  <%= f.hidden_field :recruit_id, :value => @recruit.id %>
+
+  <%= f.submit "応募する！", class: "btn btn-primary" %>
+<% end %>

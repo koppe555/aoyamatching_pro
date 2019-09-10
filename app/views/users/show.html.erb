@@ -1,0 +1,73 @@
+
+
+<div class="profile-wrap">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="row">
+        <h1><%= @user.name %></h1>
+
+        <% if @user == current_user %>
+          <%= link_to "プロフィールを編集", edit_user_path(current_user), class: "btn btn-outline-dark common-btn edit-profile-btn" %>
+        <% end %>
+      </div>
+
+        <div class="row">
+          <p>
+            @<%=link_to @user.username, "https://twitter.com/#{@user.username}", target: :blank %>
+          </p>
+        </div>
+      <% if @user == current_user && @user.grade.nil? %>
+        <p>まずはプロフィールを編集しよう！</p>
+        <% else %>
+      <div class="row">
+        <p>
+          <%= @user.faculty %>
+          <%= @user.grade %>年
+        </p>
+      </div>
+      <%= @user.introduction %>
+    </div>
+      <% end %>
+  </div>
+</div>
+
+
+<div class="tabs">
+  <input id="recruits_item" type="radio" name="tab_item" checked>
+  <label class="tab_item" for="recruits_item">募集したもの</label>
+
+  <input id="entries_item" type="radio" name="tab_item">
+  <label class="tab_item" for="entries_item">応募したもの</label>
+
+
+
+  <div class="tab_content" id="recruits_item_content">
+    <% @recruits.each do |recruit| %>
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title"><%= recruit.title %></h5>
+          <p class="card-text"><%= recruit.contents %></p>
+          <a href="<%= recruit_path(recruit.id) %>" class="btn btn-primary">詳細を見る</a>
+        </div>
+      </div>
+    <% end%>
+    <% if @recruits == [] %>
+      <p>まだ何も募集してないよ!</p>
+    <% end %>
+  </div>
+
+  <div class="tab_content" id="entries_item_content">
+    <% @entries.each do |recruit| %>
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title"><%= recruit.title %></h5>
+                <p class="card-text"><%= recruit.contents %></p>
+          <a href="<%= recruit_path(recruit.id) %>" class="btn btn-primary">詳細を見る</a>
+        </div>
+      </div>
+    <% end%>
+    <% if @entries == [] %>
+      <p>まだ何も応募してないよ!</p>
+    <% end %>
+  </div>
+</div>

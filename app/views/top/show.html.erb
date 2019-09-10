@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AoyaMatching</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content='summary' />
+  <meta name="twitter:site" content='@KOPP55' />
+  <meta property="og:url" content='http://aoyamatching.com' />
+  <meta property="og:title" content='SNSを使って青学生とつながろう！' />
+  <meta property="og:description" content='AoyaMatchingはSNSで簡単に青学生同士がつながれるサービスです。' />
+  <meta property="og:image" content='http://aoyamatching.com/assets/logo-732c7e53d7c5ab1d69690b35797dbfd28c78537a385d6a8d1cbdb825b8661601.png' />
+  <meta name="current_user_id" content="<%= current_user.id if current_user %>">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+</head>
+<body>
+
+
+
+
+
+<div class="entire">
+  <div class="semi-entire">
+    <%= image_tag 'logo.png', class: "logo" %>
+    <h2 class="tagline">
+      SNSを使って<br id="BR_13" />青学生とつながろう！
+    </h2>
+    <p class="semi-tagline">
+      AoyaMatchingはSNSで簡単に青学生同士がつながれるサービスです。
+    </p>
+    <div class="btn-blank">
+      <a href="http://localhost:3000/users/auth/twitter" class="btn-flat-border login">twitterでログイン</a>
+    </div>
+  </div>
+</div>
+
+<%# if devise_mapping.omniauthable? %>
+  <%# resource_class.omniauth_providers.each do |provider| %>
+<!--    <%#= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class: "btn-flat-border login" %><br />-->
+  <%# end %>
+<%# end %>
+
+
+</body>
+</html>

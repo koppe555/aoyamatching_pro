@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Matching</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= yield :ogp %>
+  <meta name="current_user_id" content="<%= current_user.id if current_user %>">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+
+<body data-turbolinks="false">
+<!--  フラッシュメッセージを表示する-->
+<% flash.each do |name, msg| %>
+  <div class="alert alert-<%= name %>">
+    <%= msg.html_safe %>
+  </div>
+<% end %>
+
+<!--  ここからヘッダー-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom: 50px">
+  <a class="navbar-brand" href="<%= root_path %>"><%= image_tag 'logo.png', class: "logo-header" %></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <%= link_to '募集一覧', recruits_path, class: "nav-link" %><span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <%= link_to '募集する', new_recruit_path, class: "nav-link" %><span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          ユーザー
+        </a>
+
+        <!--          ログインしているか否かでナビバーの表示を変更-->
+        <% if current_user %>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= link_to 'プロフィール', user_path(current_user), class: "dropdown-item" %>
+            <div class="dropdown-divider"></div>
+            <%= link_to 'ログアウト',  destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+          </div>
+        <% else %>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= link_to 'twitterでログイン', 'http://localhost:3000/users/auth/twitter', class: "dropdown-item" %>
+        <% end %>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!--  ここまでヘッダー-->
+
+<div class="container">
+  <%= yield %>
+</div>
+
+<script>
+    //url-textを現在のURL（document.URL）に変更する
+    $('.url-text').text(document.URL);
+
+    //textにcard-titleクラスのテキストを代入する
+    var text = $('.card-title').text();
+
+    //twitterurlのシェア用urlを作成してtwitterurlに挿入
+    var twitterurl = "https://twitter.com/intent/tweet?url=" + document.URL + "&text=" + text + "&hashtags=AoyaMatching";
+
+    //btn-twクラスのリンクをtwitterurlに変更する
+    $('.btn-tw').attr('href',twitterurl);
+
+
+</script>
+
+
+
+<!-- Footer -->
+<footer class="page-footer font-small blue">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2019 Copyright:
+    <a href="https://twitter.com/KOPP55" target="_blank"> koppe</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+
+</body>
+</html>

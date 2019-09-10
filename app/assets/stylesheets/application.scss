@@ -1,0 +1,48 @@
+@import "bootstrap";
+@import "users/show";
+@import "top/show";
+@import "recruits/show";
+
+
+
+.center{
+  border: 1px solid #aaa;
+  width: 400px;
+  text-align: center;
+}
+
+.list-group{
+  margin-top: 40px;
+}
+
+.margin{
+  margin-top: 20px;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 50vw;
+  object-fit: cover;
+}
+
+.card{
+  margin-bottom: 30px;
+}
+
+.logo-header {
+  width: 100px;
+  height: 40px;
+}
+
+@media screen and (min-width:896px){
+  .card-img-top{
+    width: 600px;
+    height: 450px;
+    object-fit: cover; /* この一行を追加するだけ！ */
+  }
+  .card{
+    width: 600px;
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+}

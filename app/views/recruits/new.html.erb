@@ -1,0 +1,14 @@
+
+<h2>募集してみよう！</h2>
+<%= form_with model: @recruit do |f| %>
+
+  <div class="form-group">
+    <%= f.text_field :title, autofocus: true, placeholder: "タイトル", class: "form-control"%>
+  </div>
+
+  <div class="form-group">
+    <%= f.text_area :contents, autofocus: true, placeholder: "募集内容", class: "form-control"%>
+  </div>
+
+  <%= f.submit "作成", class: "btn btn-primary" %>
+<% end %>

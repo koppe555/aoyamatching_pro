@@ -1,0 +1,53 @@
+
+
+<% content_for :ogp do %>
+  <meta property="og:title" content="<%= @recruit.title %>"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="/recruits/<%= @recruit.id %>"/>
+  <meta property="og:image" content=<%= "#{root_url}#{@recruit.image_url}" %> />
+  <meta property="og:site_name"  content="AoyaMatching" />
+  <meta property="og:description" content="<%= @recruit.contents %>" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@KOPP55" />
+  <meta name="twitter:image" content="<%= asset_url('title.png') %>" />
+<% end %>
+
+
+<div class="card text-center">
+  <img src="/<%= @recruit.image_url %>" class="card-img-top" alt="募集内容">
+  <div class="card-body">
+    <h5 class="card-title"><%= @recruit.title %></h5>
+    <p class="card-text"><%= @recruit.contents %></p>
+    <p class="card-text"><small class="text-muted"><%= @recruit.created_at.strftime('%Y/%m/%d %H:%M')  %></small></p>
+
+    <% if @recruit.user_id == current_user.id %>
+      <a href="#" class="btn btn-primary">募集中！</a>
+
+    <% elsif current_user.entries.where(recruit_id: @recruit.id).present? %>
+      <a href="#" class="btn btn-primary">もう応募しているよ！</a>
+
+    <% else %>
+      <a href="<%= new_recruit_entry_path(@recruit) %>" class="btn btn-primary">応募する！</a>
+    <% end %>
+    <div class="social text-center">
+      <a href="https://twitter.com/intent/tweet?url=https://www.aoyama.ac.jp/&hashtags=#AoyaMatching" rel="nofollow" class="twitter btn-t btn-xl btn-tw" data-size="large" target="_blank">ツイートする</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<div class="bosyu">
+  <% if @recruit.user_id == current_user.id %>
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-secondary">応募一覧</li>
+      <% @entries.each do |entry| %>
+        <div class="margin"><% @user = User.find(entry.user_id) %></div>
+        <h4><%= link_to @user.name, user_path(@user) %>さん</h4>
+        <li class="list-group-item"><%= entry.message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+
