@@ -1,0 +1,29 @@
+.twitter-share-button{
+  margin-top: 20px;
+}
+
+.bosyu{
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.btn-t {
+  padding: 8px 24px;
+  color: white;
+  display: inline-block;
+  opacity: 0.8;
+  border-radius: 4px;
+  margin-top: 20px;
+}
+
+.btn:hover {
+  opacity: 1;
+}
+
+.twitter {
+  background-color: #1DA1F1;
+}
+
+.fa {
+  margin-right: 5px;
+}
