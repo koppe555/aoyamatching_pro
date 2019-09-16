@@ -4,7 +4,7 @@ class RecruitsController < ApplicationController
 
   before_action :set_recruit, only: [:show]
   before_action :set_entries, only: [:show]
-  before_action :require_logged_in_user, except: [:index]
+  before_action :require_logged_in_user, except: [:index, :show]
 
   def new
     @recruit = Recruit.new

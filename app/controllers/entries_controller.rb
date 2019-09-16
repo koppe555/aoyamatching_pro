@@ -1,5 +1,6 @@
 class EntriesController < ApplicationController
   before_action :set_recruit
+  before_action :require_logged_in_user
 
 
   def new

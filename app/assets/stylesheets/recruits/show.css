@@ -27,3 +27,10 @@
 .fa {
   margin-right: 5px;
 }
+
+.share-url{
+  font-size:12px;
+  border: 1px solid rgba(0,0,0,0.1);
+  padding:5px 3px;
+  border-radius: 3px;
+}

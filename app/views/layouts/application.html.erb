@@ -10,6 +10,7 @@
   <%= yield :ogp %>
   <meta name="current_user_id" content="<%= current_user.id if current_user %>">
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -53,7 +54,7 @@
           </div>
         <% else %>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to 'twitterでログイン', 'http://localhost:3000/users/auth/twitter', class: "dropdown-item" %>
+            <%= link_to 'twitterでログイン', 'https://aoyamatching.com/users/auth/twitter', class: "dropdown-item" %>
         <% end %>
         </div>
       </li>
@@ -67,19 +68,26 @@
 </div>
 
 <script>
-    //url-textを現在のURL（document.URL）に変更する
     $('.url-text').text(document.URL);
 
-    //textにcard-titleクラスのテキストを代入する
+    //clipURL関数の定義（urlをコピーする機能）
+    function clipURL() {
+        $('body').append('<textarea id="currentURL" style="position:fixed;left:-100%;">'+location.href+'</textarea>');
+
+        $('#currentURL').select();
+
+        document.execCommand('copy');
+
+        $('#currentURL').remove();
+
+        alert("URLをコピーしました。");
+    }
+
     var text = $('.card-title').text();
 
-    //twitterurlのシェア用urlを作成してtwitterurlに挿入
-    var twitterurl = "https://twitter.com/intent/tweet?url=" + document.URL + "&text=" + text + "&hashtags=AoyaMatching";
+    var twitterurl = "https://twitter.com/intent/tweet?url=" + document.URL + "&text=" + text + "&hashtags=#AoyaMatching";
 
-    //btn-twクラスのリンクをtwitterurlに変更する
     $('.btn-tw').attr('href',twitterurl);
-
-
 </script>
 
 

@@ -49,6 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: aoyamatching_tw_auth_production
-  username: aoyamatching_tw_auth
-  password: <%= ENV['AOYAMATCHING_TW_AUTH_DATABASE_PASSWORD'] %>
+  database: aoyamatchingo_production
+  username: root
+  password: Gardenofeden55!
